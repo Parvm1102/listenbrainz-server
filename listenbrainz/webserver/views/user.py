@@ -397,9 +397,9 @@ def process_genre_data(yim_top_genre: list, data: list, user_name: str):
 
 @user_bp.post("/<mb_username:user_name>/year-in-music/")
 @user_bp.post("/<mb_username:user_name>/year-in-music/<int:year>/")
-def year_in_music(user_name, year: int = 2024):
+def year_in_music(user_name, year: int = 2025):
     """ Year in Music """
-    if year not in (2021, 2022, 2023, 2024):
+    if year not in (2021, 2022, 2023, 2024, 2025):
         return jsonify({"error": f"Cannot find Year in Music report for year: {year}"}), 404
 
     user = _get_user(user_name)
@@ -413,7 +413,7 @@ def year_in_music(user_name, year: int = 2024):
         current_app.logger.error(f"Error getting Year in Music data for user {user_name}: {e}")
 
     genreGraphData = {}
-    if yearInMusicData and year == 2024:
+    if yearInMusicData and year >= 2024:
         try:
             data = cache.get(TAG_HEIRARCHY_CACHE_KEY)
             if not data:
@@ -431,7 +431,7 @@ def year_in_music(user_name, year: int = 2024):
 
     return jsonify({
         "data": yearInMusicData,
-        **({"genreGraphData": genreGraphData} if year == 2024 else {}),
+        **({"genreGraphData": genreGraphData} if year >= 2024 else {}),
         "user": {
             "id": user.id,
             "name": user.musicbrainz_id,

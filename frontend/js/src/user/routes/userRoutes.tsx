@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Navigate, Outlet } from "react-router";
-import type { RouteObject } from "react-router";
+import type { LoaderFunctionArgs, RouteObject } from "react-router";
 import RouteLoader, { RouteQueryLoader } from "../../utils/Loader";
 
 const getUserRoutes = (): RouteObject[] => {
@@ -142,53 +142,16 @@ const getUserRoutes = (): RouteObject[] => {
       children: [
         {
           index: true,
-          element: <Navigate to="./2024" replace />,
+          element: <Navigate to="./2025" replace />,
         },
         {
-          path: "2024/",
+          path: ":year/",
           lazy: {
             loader: async () => {
-              return RouteQueryLoader("year-in-music-2024");
+              return RouteQueryLoader(`year-in-music`);
             },
             Component: async () => {
-              return (await import("../year-in-music/2024/YearInMusic2024"))
-                .YearInMusicWrapper;
-            },
-          },
-        },
-        {
-          path: "2023/",
-          lazy: {
-            loader: async () => {
-              return RouteQueryLoader("year-in-music-2023");
-            },
-            Component: async () => {
-              return (await import("../year-in-music/2023/YearInMusic2023"))
-                .YearInMusicWrapper;
-            },
-          },
-        },
-        {
-          path: "2022/",
-          lazy: {
-            loader: async () => {
-              return RouteQueryLoader("year-in-music-2022");
-            },
-            Component: async () => {
-              return (await import("../year-in-music/2022/YearInMusic2022"))
-                .YearInMusicWrapper;
-            },
-          },
-        },
-        {
-          path: "2021/",
-          lazy: {
-            loader: async () => {
-              return RouteQueryLoader("year-in-music-2021");
-            },
-            Component: async () => {
-              return (await import("../year-in-music/2021/YearInMusic2021"))
-                .YearInMusicWrapper;
+              return (await import("../year-in-music/YearInMusic")).default;
             },
           },
         },
