@@ -14,69 +14,6 @@ export function YIMYearMetaTags({
   year: number;
   backgroundColor?: string;
 }) {
-  if (year === 2021) {
-    return (
-      <Helmet>
-        <meta
-          property="og:image"
-          content="https://listenbrainz.org/static/img/year-in-music-2021.png"
-        />
-        <meta
-          property="twitter:image"
-          content="https://listenbrainz.org/static/img/year-in-music-2021.png"
-        />
-      </Helmet>
-    );
-  }
-  if (year === 2022) {
-    return (
-      <Helmet>
-        <meta
-          property="og:image"
-          content="https://listenbrainz.org/static/img/year-in-music-22/yim22-logo.png"
-        />
-        <meta
-          property="twitter:image"
-          content="https://listenbrainz.org/static/img/year-in-music-22/yim22-logo.png"
-        />
-        <style type="text/css">
-          {`body>.container, body>.container-fluid {
-            margin:0;
-            padding:0;
-            width: 100%;
-          }
-          section.footer{
-              display: none;
-          }`}
-        </style>
-      </Helmet>
-    );
-  }
-  if (year === 2023) {
-    return (
-      <Helmet>
-        <meta
-          property="og:image"
-          content="https://listenbrainz.org/static/img/year-in-music-23/yim-23-header.png"
-        />
-        <meta
-          property="twitter:image"
-          content="https://listenbrainz.org/static/img/year-in-music-23/yim-23-header.png"
-        />
-        <meta property="og:image:type" content="image/png" />
-        <style type="text/css">
-          {`body>*:not(nav) {
-              margin:0;
-              padding:0;
-              background-color: #F0EEE2
-            }
-            section.footer{
-              display: none;
-            }`}
-        </style>
-      </Helmet>
-    );
-  }
   return (
     <Helmet>
       <meta
@@ -89,19 +26,14 @@ export function YIMYearMetaTags({
       />
       <meta property="og:image:type" content="image/png" />
       <style type="text/css">
-        {`body>*:not(nav) {
-            margin:0;
-            padding:0;
-            background-color: ${backgroundColor};
-          }
-          section.footer{
-            display: none;
-          }`}
-      </style>
-      <style type="text/css">
         {`
-        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;900");
-      `}
+        @font-face {
+          font-family: "Inter";
+          src: url("/static/fonts/Inter-variable.ttf");
+        }
+        section.footer{
+          display: none;
+        }`}
       </style>
     </Helmet>
   );
